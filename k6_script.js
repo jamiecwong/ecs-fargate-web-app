@@ -10,5 +10,5 @@ export let options = {
 };
 
 export default function() {
-    let response = http.get("http://<LOAD_BALANCER_URL>");
+    let response = http.get("http://<LOAD_BALANCER_DNS_NAME>");
 };
