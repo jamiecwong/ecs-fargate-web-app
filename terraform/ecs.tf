@@ -1,9 +1,13 @@
+locals { 
+  container_name = "${local.cluster_name}-nginx-${var.env}"
+}
+
 resource "aws_ecs_cluster" "this" {
   name = "${local.cluster_name}-cluster-${var.env}"
 }
 
 resource "aws_ecs_task_definition" "this" {
-  family                   = "${local.cluster_name}-container-${var.env}"
+  family                   = "${local.cluster_name}-task-definition-${var.env}"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
@@ -11,7 +15,7 @@ resource "aws_ecs_task_definition" "this" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   container_definitions = jsonencode([{
-    name      = "${local.cluster_name}-container-${var.env}"
+    name      = local.container_name
     image     = "nginxdemos/hello"
     essential = true
     portMappings = [{
@@ -24,7 +28,7 @@ resource "aws_ecs_task_definition" "this" {
       options = {
         awslogs-region        = "eu-west-2"
         awslogs-group         = local.cluster_name
-        awslogs-stream-prefix = "${local.cluster_name}-container-${var.env}"
+        awslogs-stream-prefix = local.container_name
       }
     }
   }])

@@ -16,7 +16,7 @@ resource "aws_ecs_service" "this" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.this.arn
-    container_name   = "${local.cluster_name}-container-${var.env}"
+    container_name   = local.container_name
     container_port   = var.container_port
   }
 
