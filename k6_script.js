@@ -10,5 +10,5 @@ export let options = {
 };
 
 export default function() {
-    let response = http.get("http://ecs-9b8b-alb-example-806780129.eu-west-2.elb.amazonaws.com");
+    let response = http.get("http://<LOAD_BALANCER_URL>");
 };
