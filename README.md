@@ -6,7 +6,7 @@ For ease of deploying this with just a few Terraform commands the service runs o
 
 For the same reason I haven't created a friendly DNS name as a domain is required. In the example we will just use the load balancer DNS name.
 
-## Deploy the infrastructure via Terraform
+## Deploy the infrastructure using Terraform
 
 You can use Terraform versions 0.13 and later, I used v1.0.8 at the time of writing.
 
