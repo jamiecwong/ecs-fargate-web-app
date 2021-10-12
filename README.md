@@ -8,6 +8,9 @@ For the same reason I haven't created a friendly DNS name as a domain is require
 
 ## Deploy the infrastructure via Terraform
 
+You can use Terraform versions 0.13 and later, I used v1.0.8 at the time of writing.
+
+Run the Terraform commands:
 - `cd terraform`
 - `terraform init`
 - `terraform plan -out tfplan`
@@ -28,6 +31,8 @@ Copy the DNS name and navigate to it in a browser to view the nginx web page.
 The service will be running a single task/container to serve the web app.
 We will use K6 to send a high number of requests to the service to simulate a large number of users and force it to scale to multiple tasks/containers.
 
+K6 can be installed on Mac using Homebrew: `brew install k6`. Installation methods for alternate operating systems can be found [here](https://github.com/grafana/k6#install).
+
 `cd` into the root of the repo where `k6_script.js` is located.
 Modify the `k6_script.js`, replacing `<LOAD_BALANCER_DNS_NAME>` with the load balancer DNS name we received from the terraform apply output earlier. Save the file.
 
@@ -38,3 +43,6 @@ K6 will begin to send a high number of requests (reaching 200), and will complet
 
 This will cause the service ECSServiceAverageCPUUtilization metric to exceed the intentionally low 5% threshold forcing the service to scale. Using the AWS CLI or console you will see that the service has scaled from 1 to multiple tasks/containers.
 
+The CPU Utilization Average can be viewed in the CloudWatch console under Elastic Container Service.
+
+I have also enabled container logging to CloudWatch Logs, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
