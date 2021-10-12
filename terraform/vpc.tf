@@ -32,5 +32,3 @@ module "vpc" {
     env = var.env
   }
 }
-
-
