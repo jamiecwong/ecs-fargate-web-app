@@ -34,8 +34,8 @@ We will use K6 to send a high number of requests to the service to simulate a la
 
 K6 can be installed on Mac using Homebrew: `brew install k6`. Installation methods for alternate operating systems can be found [here](https://github.com/grafana/k6#install).
 
-`cd` into the root of the repo where `k6_script.js` is located.
-Modify the `k6_script.js`, replacing `<LOAD_BALANCER_DNS_NAME>` with the load balancer DNS name we received from the terraform apply output earlier. Save the file.
+`cd` into the root of the repo where the `k6_script.js` file is located.
+Modify the `k6_script.js` file, replacing `<LOAD_BALANCER_DNS_NAME>` with the load balancer DNS name we received from the terraform apply output earlier. Save the file.
 
 Run K6:
 `k6 run k6_script.js`
@@ -44,6 +44,13 @@ K6 will begin to send a high number of requests (reaching 200), and will complet
 
 This will cause the service ECSServiceAverageCPUUtilization metric to exceed the intentionally low 5% threshold forcing the service to scale. Using the AWS CLI or console you will see that the service has scaled from 1 to multiple tasks/containers.
 
-The CPU Utilization Average can be viewed in the CloudWatch console under Elastic Container Service.
+The CPU Utilization Average metric can be viewed in the CloudWatch console under metrics for Elastic Container Service.
 
-Container logging to CloudWatch Logs has also been enabled, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
+Container logging to CloudWatch logs has also been enabled, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
+
+# Cleaning up
+
+To remove the infrastructure run the Terraform commands:
+- `cd terraform`
+- `terraform plan -destroy -out tfplan`
+- `terraform apply tfplan`
