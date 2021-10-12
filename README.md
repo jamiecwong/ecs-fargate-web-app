@@ -45,4 +45,4 @@ This will cause the service ECSServiceAverageCPUUtilization metric to exceed the
 
 The CPU Utilization Average can be viewed in the CloudWatch console under Elastic Container Service.
 
-I have also enabled container logging to CloudWatch Logs, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
+Container logging to CloudWatch Logs has also been enabled, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
