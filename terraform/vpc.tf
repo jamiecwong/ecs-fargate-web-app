@@ -1,15 +1,3 @@
-
-
-locals {
-  cluster_name = "ecs-${random_id.name_suffix.hex}"
-
-  tags = { env = var.env }
-}
-
-resource "random_id" "name_suffix" {
-  byte_length = 2
-}
-
 data "aws_availability_zones" "available" {
   state = "available"
 }
@@ -18,7 +6,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.0"
 
-  name = "vpc-${random_id.name_suffix.hex}"
+  name = local.vpc_name
 
   cidr = "10.1.0.0/16"
 

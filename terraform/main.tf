@@ -11,3 +11,15 @@ terraform {
 provider "aws" {
   region = "eu-west-2"
 }
+
+resource "random_id" "name_suffix" {
+  byte_length = 2
+}
+
+locals {
+  vpc_name = "vpc-${random_id.name_suffix.hex}"
+
+  cluster_name = "ecs-${random_id.name_suffix.hex}"
+
+  tags = { env = var.env }
+}
