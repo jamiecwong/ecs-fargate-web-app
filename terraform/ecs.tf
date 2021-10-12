@@ -1,4 +1,4 @@
-locals { 
+locals {
   container_name = "${local.cluster_name}-nginx-${var.env}"
 }
 
