@@ -9,6 +9,7 @@ For the same reason I haven't created a friendly DNS name as a domain is require
 ## Deploy the infrastructure using Terraform
 
 You can use Terraform versions 0.13 and later, I used v1.0.8 at the time of writing.
+We are using a local backend, but only for ease of use with this example, using a remote backend is recommended.
 
 Run the Terraform commands:
 - `cd terraform`
