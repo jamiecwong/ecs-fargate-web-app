@@ -1,4 +1,4 @@
-resource "aws_lb" "main" {
+resource "aws_lb" "this" {
   name               = "${local.cluster_name}-alb-${var.env}"
   internal           = false
   load_balancer_type = "application"
@@ -8,7 +8,7 @@ resource "aws_lb" "main" {
   enable_deletion_protection = false
 }
 
-resource "aws_alb_target_group" "main" {
+resource "aws_alb_target_group" "this" {
   name        = "${local.cluster_name}-tg-${var.env}"
   port        = 80
   protocol    = "HTTP"
@@ -27,12 +27,12 @@ resource "aws_alb_target_group" "main" {
 }
 
 resource "aws_alb_listener" "http" {
-  load_balancer_arn = aws_lb.main.id
+  load_balancer_arn = aws_lb.this.id
   port              = 80
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_alb_target_group.main.id
+    target_group_arn = aws_alb_target_group.this.id
     type             = "forward"
   }
 }
@@ -42,7 +42,7 @@ resource "aws_alb_listener" "http" {
 # ------------------------------------------------------
 /*
 resource "aws_alb_listener" "http" {
-  load_balancer_arn = aws_lb.main.id
+  load_balancer_arn = aws_lb.this.id
   port              = 80
   protocol          = "HTTP"
  
@@ -58,7 +58,7 @@ resource "aws_alb_listener" "http" {
 }
  
 resource "aws_alb_listener" "https" {
-  load_balancer_arn = aws_lb.main.id
+  load_balancer_arn = aws_lb.this.id
   port              = 443
   protocol          = "HTTPS"
  
@@ -66,7 +66,7 @@ resource "aws_alb_listener" "https" {
   certificate_arn   = var.alb_tls_cert_arn
  
   default_action {
-    target_group_arn = aws_alb_target_group.main.id
+    target_group_arn = aws_alb_target_group.this.id
     type             = "forward"
   }
 }

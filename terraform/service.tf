@@ -1,7 +1,7 @@
-resource "aws_ecs_service" "main" {
+resource "aws_ecs_service" "this" {
   name                               = "${local.cluster_name}-service-${var.env}"
-  cluster                            = aws_ecs_cluster.main.id
-  task_definition                    = aws_ecs_task_definition.main.arn
+  cluster                            = aws_ecs_cluster.this.id
+  task_definition                    = aws_ecs_task_definition.this.arn
   desired_count                      = 1
   deployment_minimum_healthy_percent = 100
   deployment_maximum_percent         = 500
@@ -15,7 +15,7 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.main.arn
+    target_group_arn = aws_alb_target_group.this.arn
     container_name   = "${local.cluster_name}-container-${var.env}"
     container_port   = var.container_port
   }
