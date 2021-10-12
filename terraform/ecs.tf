@@ -12,13 +12,26 @@ resource "aws_ecs_task_definition" "main" {
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   container_definitions = jsonencode([{
     name      = "${local.cluster_name}-container-${var.env}"
-    image     = "amazon/amazon-ecs-sample"
+    image     = "nginxdemos/hello"
     essential = true
     portMappings = [{
       protocol      = "tcp"
       containerPort = var.container_port
       hostPort      = var.container_port
     }]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-region        = "eu-west-2"
+        awslogs-group         = local.cluster_name
+        awslogs-stream-prefix = "${local.cluster_name}-container-${var.env}"
+      }
+    }
   }])
 }
 
+resource "aws_cloudwatch_log_group" "main" {
+  name              = local.cluster_name
+  retention_in_days = 1
+  tags              = { env = var.env }
+}
