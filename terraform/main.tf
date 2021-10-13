@@ -21,5 +21,7 @@ locals {
 
   cluster_name = "ecs-${random_id.name_suffix.hex}"
 
+  container_name = "${local.cluster_name}-nginx-${var.env}"
+
   tags = { env = var.env }
 }

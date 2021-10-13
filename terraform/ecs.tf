@@ -1,7 +1,3 @@
-locals {
-  container_name = "${local.cluster_name}-nginx-${var.env}"
-}
-
 resource "aws_ecs_cluster" "this" {
   name = "${local.cluster_name}-cluster-${var.env}"
 }
