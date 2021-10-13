@@ -4,7 +4,7 @@ This creates an ECS Fargate cluster which runs an example nginx web app.
 
 For ease of deploying this with just a few Terraform commands the service runs on HTTP only. However the resources to enable a HTTPS redirect are commented out in `alb.tf` should you have a domain and cert that can be used.
 
-For the same reason I haven't created a friendly DNS name as a domain is required. In the example we will just use the load balancer DNS name.
+For the same reason I haven't created a friendly DNS name as a domain is required. In this example we will just use the load balancer DNS name.
 
 ## Deploy the infrastructure using Terraform
 
