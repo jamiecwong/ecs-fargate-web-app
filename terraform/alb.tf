@@ -6,6 +6,8 @@ resource "aws_lb" "this" {
   subnets            = module.vpc.public_subnets
 
   enable_deletion_protection = false
+
+  tags = local.tags
 }
 
 resource "aws_alb_target_group" "this" {
@@ -24,6 +26,8 @@ resource "aws_alb_target_group" "this" {
     path                = "/"
     unhealthy_threshold = "2"
   }
+
+  tags = local.tags
 }
 
 resource "aws_alb_listener" "http" {

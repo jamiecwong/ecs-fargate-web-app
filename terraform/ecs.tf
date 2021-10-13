@@ -28,6 +28,8 @@ resource "aws_ecs_task_definition" "this" {
       }
     }
   }])
+
+  tags = local.tags
 }
 
 resource "aws_cloudwatch_log_group" "this" {

@@ -25,6 +25,8 @@ resource "aws_security_group" "alb" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+
+  tags = local.tags
 }
 
 resource "aws_security_group" "ecs_tasks" {
@@ -46,4 +48,6 @@ resource "aws_security_group" "ecs_tasks" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+
+  tags = local.tags
 }

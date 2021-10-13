@@ -20,7 +20,5 @@ resource "aws_ecs_service" "this" {
     container_port   = var.container_port
   }
 
-  lifecycle {
-    ignore_changes = []
-  }
+  tags = local.tags
 }
