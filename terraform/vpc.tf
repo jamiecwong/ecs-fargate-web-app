@@ -16,7 +16,5 @@ module "vpc" {
 
   enable_nat_gateway = true
 
-  tags = {
-    env = var.env
-  }
+  tags = local.tags
 }

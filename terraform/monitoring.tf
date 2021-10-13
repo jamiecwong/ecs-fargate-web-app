@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "target_group_5xx_errors" {
     "LoadBalancer" = aws_lb.this.id
   }
 
-  tags = { env = var.env }
+  tags = local.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "lb_5xx_errors" {
@@ -40,5 +40,5 @@ resource "aws_cloudwatch_metric_alarm" "lb_5xx_errors" {
     "LoadBalancer" = aws_lb.this.id
   }
 
-  tags = { env = var.env }
+  tags = local.tags
 }

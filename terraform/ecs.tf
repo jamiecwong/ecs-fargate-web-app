@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "this" {
 resource "aws_cloudwatch_log_group" "this" {
   name              = local.cluster_name
   retention_in_days = 1
-  tags              = { env = var.env }
+  tags              = local.tags
 }
 
 resource "aws_iam_role" "ecs_task_role" {
