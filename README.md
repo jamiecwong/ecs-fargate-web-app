@@ -48,6 +48,10 @@ The CPU Utilization Average metric can be viewed in the CloudWatch console under
 
 Container logging to CloudWatch logs has also been enabled, the log group is named after the cluster name prefix, e.g. `ecs-9b8b`.
 
+# Monitoring and alerting
+
+The load balancer and target group are monitored for 5XX errors, Cloudwatch alarms are triggered if these errors are detected. An SNS Topic arn can be added to these alarms in `monitoring.tf` so that you can receive the alerts via email.
+
 # Cleaning up
 
 To remove the infrastructure run the Terraform commands:
