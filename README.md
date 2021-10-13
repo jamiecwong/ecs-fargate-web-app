@@ -52,6 +52,10 @@ Container logging to CloudWatch logs has also been enabled, the log group is nam
 
 The load balancer and target group are monitored for 5XX errors, Cloudwatch alarms are triggered if these errors are detected. An SNS Topic arn can be added to these alarms in `monitoring.tf` so that you can receive the alerts via email.
 
+# Security groups
+
+The nginx web app is set up to be publicly available. The security groups can be amended in `sg.tf` if you intend for it to be accessed only from a secure set of IPs.
+
 # Cleaning up
 
 To remove the infrastructure run the Terraform commands:
