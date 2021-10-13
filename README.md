@@ -50,7 +50,7 @@ Container logging to CloudWatch logs has also been enabled, the log group is nam
 
 # Monitoring and alerting
 
-The load balancer and target group are monitored for 5XX errors, Cloudwatch alarms are triggered if these errors are detected. An SNS Topic arn can be added to these alarms in `monitoring.tf` so that you can receive the alerts via email.
+The load balancer and target group are monitored for 5XX errors, Cloudwatch alarms are triggered if these errors are detected. An SNS Topic arn can be added to the actions for these alarms in `monitoring.tf` so that you can receive the alerts via email.
 
 # Security groups
 
